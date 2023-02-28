@@ -1,0 +1,39 @@
+:root{
+    --rojo: #ff0000
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 90px;
+    background-color: var(--rojo) ;
+}
+
+nav {
+    display: flex;
+}
+
+
+
+.icon figure img{
+    margin: 5px 2.5px;
+    height: 80px;
+}
+
+.icon figure {
+    height: 90px;
+}
+
+.title {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+
+
+
