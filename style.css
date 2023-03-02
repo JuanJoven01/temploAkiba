@@ -7,24 +7,44 @@
     padding: 0;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 header {
     height: 90px;
     background-color: var(--rojo) ;
+    display: flex;
+    align-items: center;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
 }
 
 nav {
     display: flex;
 }
 
-
-
-.icon figure img{
-    margin: 5px 2.5px;
-    height: 80px;
+.menu-icon {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin: auto 20px;
 }
 
-.icon figure {
-    height: 90px;
+.menu-icon img {
+    height: 30px;
+    
+}
+
+.icon  {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.icon  img{
+    height: 70px;
+    margin: auto 15px;
 }
 
 .title {
@@ -34,6 +54,78 @@ nav {
     justify-content: center;
 }
 
+.title h1 {
+    font-size: 2.5rem;
+}
+
+.title form {
+    display: flex;
+    align-items: center;
+}
+
+
+.title form img {
+    height: 20px;
+    margin-left: 10px;
+}
+
+.title form img:hover {
+    animation-duration: 500ms;
+    animation-name: bigger;
+
+}
+
+.title form input{
+    height: 25px;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+main {
+    background-color: var(--rojo);
+}
+
+.categories {
+    padding: 2rem;
+}
+
+.categories h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+
+.categories figure {
+    height: 130px;
+    border: 2px solid black;
+    margin: 1em;
+    background-color: white;
+}
+
+.categories figure img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-bottom: 2px solid black;
+    
+}
+
+
+.categories figure figcaption p {
+    font-size: 2rem;
+    text-align: center;
+
+}
+
+@keyframes bigger {
+    form{
+        height: 20px;
+    }
+    to {
+        height: 25px;
+    }
+}
 
 
 
