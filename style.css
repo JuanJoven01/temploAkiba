@@ -10,20 +10,25 @@
 html {
     font-size: 62.5%;
 }
-
+body{
+    min-width: 360px;
+}
 /* HEADER */
 /*--------------------------------------------------------------------------------*/
 header {
     height: 90px;
     background-color: var(--rojo) ;
     display: flex;
-    align-items: center;
+    justify-content: space-around ;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
+    min-width: 360px;
 }
 
 nav {
     display: flex;
+    width: 100%;
+    justify-content: space-between ;
 }
 
 .menu-icon {
@@ -63,6 +68,7 @@ nav {
 .title form {
     display: flex;
     align-items: center;
+    padding-left: 10px;
 }
 
 
@@ -95,6 +101,7 @@ main {
     padding: 2rem;
     /*Para que no se muestre*/
     display: none;
+    min-width: 360px;
 }
 
 .categories h1 {
@@ -132,6 +139,7 @@ main {
     font-size: 2rem;
     padding-top: 10px;
     text-align: center;
+    
 }
 .products {
     display: flex;
@@ -139,6 +147,7 @@ main {
     padding-left: 10px;
     flex-wrap: wrap;
     justify-content: space-around;
+    min-width: 360px;
 }
 
 .product-container {
@@ -181,12 +190,15 @@ main {
 }
 
 .item {
+    /*para ocultar*/
+    display: none;
     width: 90%;
     position: absolute;
     top: 100px;
     margin-left: 5%;
     background-color:white;
     border: 2px solid black;
+    min-width: 360px;
 
 }
 
