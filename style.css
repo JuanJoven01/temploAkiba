@@ -1,5 +1,6 @@
 :root{
-    --rojo: #ff0000
+    --rojo: #ff0000;
+    --noTanBlanco: #eeeeee;
 }
 
 * {
@@ -22,7 +23,6 @@ header {
     justify-content: space-around ;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
-    min-width: 360px;
 }
 
 nav {
@@ -91,7 +91,7 @@ nav {
 }
 
 main {
-    background-color: var(--rojo);
+    background-color: var(--noTanBlanco);
 }
 
 /*CATEGORIES*/
@@ -101,7 +101,6 @@ main {
     padding: 2rem;
     /*Para que no se muestre*/
     display: none;
-    min-width: 360px;
 }
 
 .categories h1 {
@@ -147,7 +146,6 @@ main {
     padding-left: 10px;
     flex-wrap: wrap;
     justify-content: space-around;
-    min-width: 360px;
 }
 
 .product-container {
@@ -198,7 +196,6 @@ main {
     margin-left: 5%;
     background-color:white;
     border: 2px solid black;
-    min-width: 360px;
 
 }
 
@@ -284,10 +281,43 @@ main {
     border: 1.5px solid black ;
 }
 
+/*FOOTER*/
+/*--------------------------------------------------------------------------------*/
 
+footer{
+    background-color: var(--noTanBlanco);
+    border-top: 2px solid black;
+}
 
+.contact {
+    display: flex;
+}
+.social figure img {
+    height: 30px;
+}
 
+.social figure {
+    margin: 15px;
+}
 
+.social figcaption {
+    font-size: 1.3em;
+}
+
+.img-footer{
+    display: flex;
+    align-items: end;
+}
+
+.img-footer img{
+    height: 180px;
+}
+
+/*OCULTAR CREDITOS*/
+
+.credits {
+    display: none;
+}
 /*ANIMACIONES*/
 /*-----------------------------------------------------------------------------*/
 
