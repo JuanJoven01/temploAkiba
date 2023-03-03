@@ -12,6 +12,7 @@ html {
 }
 
 /* HEADER */
+/*--------------------------------------------------------------------------------*/
 header {
     height: 90px;
     background-color: var(--rojo) ;
@@ -88,6 +89,7 @@ main {
 }
 
 /*CATEGORIES*/
+/*----------------------------------------------------------------------------------*/
 
 .categories {
     padding: 2rem;
@@ -169,6 +171,14 @@ main {
 }
 
 /* items */ 
+/*--------------------------------------------------------------------------------*/
+
+.item .quit {
+    height: 20px;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+}
 
 .item {
     width: 90%;
@@ -184,6 +194,30 @@ main {
     width: 80%;
     margin: 20px 10% 20px 10%;
     border: 1px solid black;
+}
+
+.item .back {
+    height: 20px;
+    position: absolute;
+    left: 25px;
+    top: 150px;
+}
+
+.item .foward {
+    height: 20px;
+    position: absolute;
+    left: 307px;
+    top: 150px;
+}
+
+.item .back:hover {
+    animation-name: backfoward;
+    animation-duration: 300ms;
+}
+
+.item .foward:hover {
+    animation-name: backfoward;
+    animation-duration: 300ms;
 }
 
 .item figcaption {
@@ -204,22 +238,46 @@ main {
 
 .item .img-whatsapp {
     height: 25px;
+    margin: 5px;
 }
 
-.item .quit {
-    height: 20px;
-    position: absolute;
-    left: -10px;
-    top: -10px;
+.item .item-buy{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.item .item-buy-buy{
+    display: flex;
+    align-items: center;
+}
+
+.item .item-buy p {
+    font-size: 1.6rem;
+}
+
+.item-buy-buy button{
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 5px;
+    height: 35px;
+    
+}
+
+.item-buy-buy button:hover{
+    background-color: rgb(39, 39, 39);
+    border: 1.5px solid black ;
 }
 
 
 
 
 
-
-
-
+/*ANIMACIONES*/
+/*-----------------------------------------------------------------------------*/
 
 @keyframes bigger-search {
     form{
@@ -230,5 +288,15 @@ main {
     }
 }
 
+@keyframes backfoward {
+    form{
+        height: 20px;
+        top: 150px;
+    }
+    to {
+        height: 25px;
+        top: 146px;
+    }
+}
 
 
