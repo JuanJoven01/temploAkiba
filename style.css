@@ -11,6 +11,7 @@ html {
     font-size: 62.5%;
 }
 
+/* HEADER */
 header {
     height: 90px;
     background-color: var(--rojo) ;
@@ -71,7 +72,7 @@ nav {
 
 .title form img:hover {
     animation-duration: 500ms;
-    animation-name: bigger;
+    animation-name: bigger-search;
 
 }
 
@@ -86,8 +87,12 @@ main {
     background-color: var(--rojo);
 }
 
+/*CATEGORIES*/
+
 .categories {
     padding: 2rem;
+    /*Para que no se muestre*/
+    display: none;
 }
 
 .categories h1 {
@@ -118,7 +123,105 @@ main {
 
 }
 
-@keyframes bigger {
+/*PRODUCTS*/
+
+
+.prod h1{
+    font-size: 2rem;
+    padding-top: 10px;
+    text-align: center;
+}
+.products {
+    display: flex;
+    justify-content: center;
+    padding-left: 10px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 10px 20px 10px 10px;
+    background-color: white;
+    
+}
+.product-container img {
+    height: 120px;
+    object-fit: contain;
+    margin: 10px;
+
+}
+
+.product-container figcaption{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px auto;
+    border-top: 2px solid black;
+
+}
+
+.product-container figcaption p {
+    margin-top: 5px;
+    font-size: 1.3rem;
+}
+
+/* items */ 
+
+.item {
+    width: 90%;
+    position: absolute;
+    top: 100px;
+    margin-left: 5%;
+    background-color:white;
+    border: 2px solid black;
+
+}
+
+.item .item-img {
+    width: 80%;
+    margin: 20px 10% 20px 10%;
+    border: 1px solid black;
+}
+
+.item figcaption {
+    margin: 0 10% 0 10%;
+}
+
+.item figcaption h1 {
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 1.6em;
+}
+
+.item figcaption p {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    display: inline-block;
+}
+
+.item .img-whatsapp {
+    height: 25px;
+}
+
+.item .quit {
+    height: 20px;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+}
+
+
+
+
+
+
+
+
+
+@keyframes bigger-search {
     form{
         height: 20px;
     }
