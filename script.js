@@ -10,7 +10,16 @@ const quitCategories = document.querySelector(".quit-categories");
 const allCategories = document.querySelector(".all-categories");
 //llamamos a productos, que será quien tenga 
 const products = document.querySelector(".products");
+// llamamos el botón de back home para poder volver al inicio de la página
+const backHome = document.querySelector(".back-home");
 
+
+
+
+
+//creamos una variable que se creará en los productos de la lista
+//para saber a cual le hemos dado click
+let itemClick = 0;
 
 //creamos una variable para poder mover la imagen
 let imgPos = 0;
@@ -31,13 +40,12 @@ class Category {
 }
 // creamos una clase para agregar a los items
 class Item {
-    constructor(categoryItem, name, longName, itemDescription, price, itemId,images){
+    constructor(categoryItem, name, longName, itemDescription, price,images){
         this._categoryItem = categoryItem;
         this._name = name;
         this._longName = longName;
         this._itemDescription = itemDescription;
         this._price = price;
-        this._itemId = itemId;
         this._images = images;
 
     }
@@ -50,7 +58,7 @@ categoriesA.push(new Category("naruto","Naruto","./src/categories/naruto.jpeg"))
 categoriesA.push(new Category("demonSlayer","Demon Slayer - Kimetsu no Yaiba","./src/categories/demonSlayer.jpeg"));
 categoriesA.push(new Category("jujutsuKaisen","Jujutsu Kaisen","./src/categories/JujutsuKaisen.jpg"));
 categoriesA.push(new Category("digimon","Digimon","./src/categories/digimon.jpeg"));
-categoriesA.push(new Category("chainsawman","Chainsaw Man","./src/categories/Chainsawman.jpeg"));
+categoriesA.push(new Category("chainsawMan","Chainsaw Man","./src/categories/Chainsawman.jpeg"));
 categoriesA.push(new Category("theQuintessentialQuintuplets","The Quintessential Quintuplets - Las Quintillizas","./src/categories/theQuintessentialQuintuplets.jpeg"));
 categoriesA.push(new Category("spyFamily","Spy Family","./src/categories/spyFamily.png"));
 categoriesA.push(new Category("shingekyNoKyojin","Shingeky No Kyojin - Attack On Titan","./src/categories/digimon.jpeg"));
@@ -58,14 +66,14 @@ categoriesA.push(new Category("sakuraCardCaptor","Sakura Card Captor","./src/cat
 categoriesA.push(new Category("tokioRevengers","Tokio Revengers","./src/categories/tokyoRevengers.jpeg"));
 categoriesA.push(new Category("Evangelion","Evangelion","./src/categories/evangelion.jpg"));
 categoriesA.push(new Category("osamaRanking","Ōsama Ranking - Ranking Of Kings","./src/categories/osamaRankingOfKings.jpg"));
-categoriesA.push(new Category("magiaRecord","Magia Record: Puella Magi Madoka Magica Gaiden","./src/categories/magiaRecordMahouShoujoMadokaMagicaGaiden.jpg"));
+categoriesA.push(new Category("puellaMagi","Magia Record: Puella Magi Madoka Magica Gaiden","./src/categories/magiaRecordMahouShoujoMadokaMagicaGaiden.jpg"));
 categoriesA.push(new Category("pokemon","Pokemon","./src/categories/pokemon.png"));
 
 // comanezamos a agregar elementos de los item a un arreglo
 
-itemsA.push(new Item("dragonBall", "Trunks del Furuto","Trunks del Futuro Super Sayajin Garlick Gun Dragón Ball Súper Banpresto", "Figura original Banpresto BANDAI Dragon Ball Super","130.000",0,["./src/products/dragonBall/futureTrunks/1.jpeg","./src/products/dragonBall/futureTrunks/2.jpeg","./src/products/dragonBall/futureTrunks/3.jpeg","./src/products/dragonBall/futureTrunks/4.jpeg","./src/products/dragonBall/futureTrunks/5.jpeg","./src/products/dragonBall/futureTrunks/6.jpeg"]));
-itemsA.push(new Item("dragonBall", "Trunks del Furuto","Trunks del Futuro Super Sayajin Garlick Gun Dragón Ball Súper Banpresto", "Figura original Banpresto BANDAI Dragon Ball Super","130.000",1,["./src/products/dragonBall/futureTrunks/1.jpeg","./src/products/dragonBall/futureTrunks/2.jpeg","./src/products/dragonBall/futureTrunks/3.jpeg","./src/products/dragonBall/futureTrunks/4.jpeg","./src/products/dragonBall/futureTrunks/5.jpeg","./src/products/dragonBall/futureTrunks/6.jpeg"]));
-itemsA.push(new Item("dragonBall", "Trunks del Furuto","Trunks del Futuro Super Sayajin Garlick Gun Dragón Ball Súper Banpresto", "Figura original Banpresto BANDAI Dragon Ball Super","130.000",0,["./src/products/dragonBall/futureTrunks/1.jpeg","./src/products/dragonBall/futureTrunks/2.jpeg","./src/products/dragonBall/futureTrunks/3.jpeg","./src/products/dragonBall/futureTrunks/4.jpeg","./src/products/dragonBall/futureTrunks/5.jpeg","./src/products/dragonBall/futureTrunks/6.jpeg"]));
+itemsA.push(new Item("dragonBall", "Trunks del Furuto","Trunks del Futuro Super Sayajin Garlick Gun Dragón Ball Súper Banpresto", "Figura original Banpresto BANDAI Dragon Ball Super","130.000",["./src/products/dragonBall/futureTrunks/1.jpeg","./src/products/dragonBall/futureTrunks/2.jpeg","./src/products/dragonBall/futureTrunks/3.jpeg","./src/products/dragonBall/futureTrunks/4.jpeg","./src/products/dragonBall/futureTrunks/5.jpeg","./src/products/dragonBall/futureTrunks/6.jpeg"]));
+itemsA.push(new Item("dragonBall", "Trunks del Furuto","Trunks del Futuro Super Sayajin Garlick Gun Dragón Ball Súper Banpresto", "Figura original Banpresto BANDAI Dragon Ball Super","130.000",["./src/products/dragonBall/futureTrunks/1.jpeg","./src/products/dragonBall/futureTrunks/2.jpeg","./src/products/dragonBall/futureTrunks/3.jpeg","./src/products/dragonBall/futureTrunks/4.jpeg","./src/products/dragonBall/futureTrunks/5.jpeg","./src/products/dragonBall/futureTrunks/6.jpeg"]));
+itemsA.push(new Item("dragonBall", "Trunks del Furuto","Trunks del Futuro Super Sayajin Garlick Gun Dragón Ball Súper Banpresto", "Figura original Banpresto BANDAI Dragon Ball Super","130.000",["./src/products/dragonBall/futureTrunks/1.jpeg","./src/products/dragonBall/futureTrunks/2.jpeg","./src/products/dragonBall/futureTrunks/3.jpeg","./src/products/dragonBall/futureTrunks/4.jpeg","./src/products/dragonBall/futureTrunks/5.jpeg","./src/products/dragonBall/futureTrunks/6.jpeg"]));
 
 
 //insertamos el código HTLM para poder agregar las clases del arreglo
@@ -93,7 +101,7 @@ let itemsRecurrent = "";
 
 for (item in itemsA){
     let codigo = `
-    <div class="product-container">
+    <div class="product-container itemNo${item}">
         <img src=${itemsA[item]._images[0]} alt=${itemsA[item]._name}>
             <figcaption>
                 <p>${itemsA[item]._name}</p>
@@ -115,49 +123,65 @@ const productContainer = document.querySelectorAll(".product-container");
 for (let i = 0; i< itemsA.length; i++){
     productContainer[i].addEventListener("click",()=>{
         itemView.classList.toggle("hide");
-    })
-    imgPos = 0;
-    itemView.innerHTML=`
-    <img class="quit" src="/src/quit.png" alt="Salir del ítem">
-            <img class="back" src="/src/back.png" alt="Imágen anterior">
-            <img class="foward" src="/src/foward.png" alt="Imágen siguiente">
-            <img class="item-img" src=${itemsA[i]._images[imgPos]} alt=${itemsA[i]._name}>
-            
-            <figcaption>
-                <h1>${itemsA[i]._longName}</h1>
-                <p>${itemsA[i]._itemDescription}</p>
-                <div class="item-buy">
-                    <p>Precio: $${itemsA[i]._price} COP</p>
-                    <div class="item-buy-buy">
-                        <button>Comprar</button>
-                        <img class="img-whatsapp" src="/src/whatsapp.png" alt="Icono de WhatsApp">
+        itemClick = i;
+        imgPos = 0;
+        itemView.innerHTML=`
+        <img class="quit" src="/src/quit.png" alt="Salir del ítem">
+                <img class="back" src="/src/back.png" alt="Imágen anterior">
+                <img class="foward" src="/src/foward.png" alt="Imágen siguiente">
+                <img class="item-img" src=${itemsA[itemClick]._images[imgPos]} alt=${itemsA[itemClick]._name}>
+                
+                <figcaption>
+                    <h1>${itemsA[itemClick]._longName}</h1>
+                    <p>${itemsA[itemClick]._itemDescription}</p>
+                    <div class="item-buy">
+                        <p>Precio: $${itemsA[itemClick]._price} COP</p>
+                        <div class="item-buy-buy">
+                            <button>Comprar</button>
+                            <img class="img-whatsapp" src="/src/whatsapp.png" alt="Icono de WhatsApp">
+                        </div>
                     </div>
-                </div>
-            </figcaption>`
+                </figcaption>`
 
+                // llamamos al boton de back para volver a la imágen anterior
+                const backButton = document.querySelector(".back");
+                // creamos el listener para que ese botón retorme a la imagen anteior
+                backButton.addEventListener("click",()=>{
+                    if (imgPos < 1){
+                        return null
+                    }else{
+                        imgPos = imgPos -1;
+                    }
+                    
+                    let itemImg = document.querySelector(".item-img");
+                    itemImg.setAttribute("src",`${itemsA[itemClick]._images[imgPos]}`);
+                    
+                });
 
-}
-
-
+                // llamamos al boton de back para volver a la imágen anterior
+                const fowardButton = document.querySelector(".foward");
+                // creamos el listener para que ese botón retorme a la imagen anteior
+                fowardButton.addEventListener("click",()=>{
+                    if (imgPos >= (itemsA[itemClick]._images.length - 1)){
+                        return null
+                    } else{
+                        imgPos = imgPos +1;
+                    }
+                    let itemImg = document.querySelector(".item-img");
+                    itemImg.setAttribute("src",`${itemsA[itemClick]._images[imgPos]}`);
+                }
+);
 
 //llamamos el boton de salir del item
 const quitItem = document.querySelector(".quit");
-// llamamos al boton de back para volver a la imágen anterior
-const backButton = document.querySelector(".back");
-// creamos el listener para que ese botón retorme a la imagen anteior
-backButton.addEventListener("click",()=>{
-    let itemImg = document.querySelector(".item-img");
-    let imgSrc = itemImg.getAttribute("src");
-    imgPos = imgPos -1;
-    
-    
-});
-// llamamos al boton de back para volver a la imágen anterior
-const fowardButton = document.querySelector(".foward");
-// creamos el listener para que ese botón retorme a la imagen anteior
-fowardButton.addEventListener("click",()=>{
-    imgPos = imgPos +1;
-});
+//creamos un listener para salirnos al darle click al item
+quitItem.addEventListener("click",()=>{
+    itemView.classList.toggle("hide");
+})
+
+
+    })
+}
 
 
 
@@ -172,9 +196,21 @@ menuCategories.addEventListener("click",()=>{
 quitCategories.addEventListener("click",()=>{
     categories.classList.add("hide");
 })
-//creamos un listener para salirnos al darle click al item
-quitItem.addEventListener("click",()=>{
-    itemView.classList.toggle("hide");
-})
 
-
+//ponemso un listener a back home para que nos vuelva a imprimir los item
+backHome.addEventListener("click", ()=>{
+    itemsRecurrent = "";
+    for (item in itemsA){
+        let codigo = `
+        <div class="product-container itemNo${item}">
+            <img src=${itemsA[item]._images[0]} alt=${itemsA[item]._name}>
+                <figcaption>
+                    <p>${itemsA[item]._name}</p>
+                    <p>$${itemsA[item]._price} COP</p>
+                </figcaption>
+        </div>`;
+        
+        itemsRecurrent =  itemsRecurrent + codigo;
+        products.innerHTML = itemsRecurrent;
+    }
+});
