@@ -350,7 +350,7 @@ searchInput.addEventListener("keypress",(event)=>{
     
     if(event.key == "Enter"){
         event.preventDefault();
-    console.log(searchInput.value);
+        searchByString();
     }
 })
 
