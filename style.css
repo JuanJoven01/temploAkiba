@@ -40,8 +40,8 @@ nav {
 
 .menu-icon img {
     height: 30px;
-    
 }
+
 
 .icon  {
     display: flex;
@@ -50,7 +50,7 @@ nav {
 }
 
 .icon  img{
-    height: 70px;
+    height: 65px;
     margin: auto 15px;
 }
 
@@ -99,8 +99,20 @@ main {
 
 .categories {
     padding: 2rem;
-    /*Para que no se muestre*/
-    display: none;
+    background-color: var(--noTanBlanco);
+    border: 2px solid black;
+    min-width: 300px;
+    position: absolute;
+    right: 0;
+    left: 0;
+
+}
+
+.quit-categories{
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: -10px;
 }
 
 .categories h1 {
@@ -110,7 +122,7 @@ main {
 
 
 .categories figure {
-    height: 130px;
+    min-height: 130px;
     border: 2px solid black;
     margin: 1em;
     background-color: white;
@@ -188,8 +200,7 @@ main {
 }
 
 .item {
-    /*para ocultar*/
-    display: none;
+    
     width: 90%;
     position: absolute;
     top: 100px;
@@ -318,6 +329,12 @@ footer{
 .credits {
     display: none;
 }
+
+/*clase hide para mostrar o quitar un ítem*/
+
+.hide {
+    display: none;
+}
 /*ANIMACIONES*/
 /*-----------------------------------------------------------------------------*/
 
@@ -326,7 +343,7 @@ footer{
         height: 20px;
     }
     to {
-        height: 25px;
+        height: 22px;
     }
 }
 
@@ -336,7 +353,7 @@ footer{
         top: 150px;
     }
     to {
-        height: 25px;
+        height: 22px;
         top: 146px;
     }
 }
