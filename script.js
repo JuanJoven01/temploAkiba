@@ -12,6 +12,10 @@ const allCategories = document.querySelector(".all-categories");
 const products = document.querySelector(".products");
 // llamamos el botón de back home para poder volver al inicio de la página
 const backHome = document.querySelector(".back-home");
+//traemos el campo en el cual se ingresará el item a buscar
+const searchInput = document.querySelector(".search-string");
+//traemos el boton con el cual buscaremos
+const searchButton = document.querySelector(".search-button");
 
 //creamos una variable que se creará en los productos de la lista
 //para saber a cual le hemos dado click
@@ -334,3 +338,23 @@ backHome.addEventListener("click", ()=>{
     productContainer = document.querySelectorAll(".product-container");
     listenerItemList();
 });
+
+//aqui vamos a crear la lógica para buscar
+
+searchButton.addEventListener("click",()=>{
+    searchByString();
+})
+
+
+searchInput.addEventListener("keypress",(event)=>{
+    
+    if(event.key == "Enter"){
+        event.preventDefault();
+    console.log(searchInput.value);
+    }
+})
+
+
+function searchByString (){
+    console.log(searchInput.value);
+}
