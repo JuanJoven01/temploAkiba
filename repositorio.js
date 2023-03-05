@@ -27,4 +27,20 @@ catContainer.appendChild(quitCategories,catDiv);
 catDiv.appendChild(imgCat,catFigcaption);
 catFigcaption.appendChild(catP);
 
-
+//no borrar
+itemsRecurrent = "";
+        for (item in searchedCategory){
+            let codigo = `
+            <div class="product-container itemNo${item}">
+                <img src=${searchedCategory[item]._images[0]} alt=${searchedCategory[item]._name}>
+                    <figcaption>
+                        <p>${searchedCategory[item]._name}</p>
+                        <p>$${searchedCategory[item]._price} COP</p>
+                    </figcaption>
+            </div>`;
+            
+            itemsRecurrent =  itemsRecurrent + codigo;
+            products.innerHTML = itemsRecurrent;
+            
+        }
+        productContainer = document.querySelectorAll(".product-container");

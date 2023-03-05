@@ -13,10 +13,6 @@ const products = document.querySelector(".products");
 // llamamos el botón de back home para poder volver al inicio de la página
 const backHome = document.querySelector(".back-home");
 
-
-
-
-
 //creamos una variable que se creará en los productos de la lista
 //para saber a cual le hemos dado click
 let itemClick = 0;
@@ -29,6 +25,9 @@ let categoriesA = [];
 
 //creamos una array para los items
 let itemsA = [];
+
+//creamos un array en el cual se guardarán los elementos de cada categoría
+let searchedCategory = [];
 
 // Comenzamos a crear los objetos de las categorías
 class Category {
@@ -82,7 +81,7 @@ let categoriesRecurrent = "";
 //aqui se recorrerá el arreglo para ir agregando las nuevas categorías
 for (categs in categoriesA){
     
-    let codigo = `<div class="cat-container">
+    let codigo = `<div class="cat-container" class1=${categoriesA[categs]._categoryItem}>
     <figure class="cat-div">
         <img src=${categoriesA[categs]._image} alt=${categoriesA[categs]._name}>
         <figcaption>
@@ -114,76 +113,129 @@ for (item in itemsA){
 }
 
 //obtenemos el product container para llamar a la linea a la cual se le dará el código.
-const productContainer = document.querySelectorAll(".product-container");
+let productContainer = document.querySelectorAll(".product-container");
 
 //creamos un evento para que al darle click en un item nos de retorne el cuadro de
 //las caracteristicas completas del mismo
 // Para esto se debe realizar con un for, dado que son muchos con el mimso selector
-
-for (let i = 0; i< itemsA.length; i++){
-    productContainer[i].addEventListener("click",()=>{
-        itemView.classList.toggle("hide");
-        itemClick = i;
-        imgPos = 0;
-        itemView.innerHTML=`
-        <img class="quit" src="/src/quit.png" alt="Salir del ítem">
-                <img class="back" src="/src/back.png" alt="Imágen anterior">
-                <img class="foward" src="/src/foward.png" alt="Imágen siguiente">
-                <img class="item-img" src=${itemsA[itemClick]._images[imgPos]} alt=${itemsA[itemClick]._name}>
-                
-                <figcaption>
-                    <h1>${itemsA[itemClick]._longName}</h1>
-                    <p>${itemsA[itemClick]._itemDescription}</p>
-                    <div class="item-buy">
-                        <p>Precio: $${itemsA[itemClick]._price} COP</p>
-                        <div class="item-buy-buy">
-                            <button>Comprar</button>
-                            <img class="img-whatsapp" src="/src/whatsapp.png" alt="Icono de WhatsApp">
+listenerItemList();
+function listenerItemList(){
+    for (let i = 0; i< itemsA.length; i++){
+        productContainer[i].addEventListener("click",()=>{
+            itemView.classList.toggle("hide");
+            itemClick = i;
+            imgPos = 0;
+            itemView.innerHTML=`
+            <img class="quit" src="/src/quit.png" alt="Salir del ítem">
+                    <img class="back" src="/src/back.png" alt="Imágen anterior">
+                    <img class="foward" src="/src/foward.png" alt="Imágen siguiente">
+                    <img class="item-img" src=${itemsA[itemClick]._images[imgPos]} alt=${itemsA[itemClick]._name}>
+                    
+                    <figcaption>
+                        <h1>${itemsA[itemClick]._longName}</h1>
+                        <p>${itemsA[itemClick]._itemDescription}</p>
+                        <div class="item-buy">
+                            <p>Precio: $${itemsA[itemClick]._price} COP</p>
+                            <div class="item-buy-buy">
+                                <button>Comprar</button>
+                                <img class="img-whatsapp" src="/src/whatsapp.png" alt="Icono de WhatsApp">
+                            </div>
                         </div>
-                    </div>
-                </figcaption>`
-
-                // llamamos al boton de back para volver a la imágen anterior
-                const backButton = document.querySelector(".back");
-                // creamos el listener para que ese botón retorme a la imagen anteior
-                backButton.addEventListener("click",()=>{
-                    if (imgPos < 1){
-                        return null
-                    }else{
-                        imgPos = imgPos -1;
+                    </figcaption>`
+    
+                    // llamamos al boton de back para volver a la imágen anterior
+                    const backButton = document.querySelector(".back");
+                    // creamos el listener para que ese botón retorme a la imagen anteior
+                    backButton.addEventListener("click",()=>{
+                        if (imgPos < 1){
+                            return null
+                        }else{
+                            imgPos = imgPos -1;
+                        }
+                        
+                        let itemImg = document.querySelector(".item-img");
+                        itemImg.setAttribute("src",`${itemsA[itemClick]._images[imgPos]}`);
+                        
+                    });
+    
+                    // llamamos al boton de fpward para acanzar a la siguiente imagen
+                    const fowardButton = document.querySelector(".foward");
+                    // creamos el listener para que ese botón retorme a la imagen anteior
+                    fowardButton.addEventListener("click",()=>{
+                        if (imgPos >= (itemsA[itemClick]._images.length - 1)){
+                            return null
+                        } else{
+                            imgPos = imgPos +1;
+                        }
+                        let itemImg = document.querySelector(".item-img");
+                        itemImg.setAttribute("src",`${itemsA[itemClick]._images[imgPos]}`);
                     }
-                    
-                    let itemImg = document.querySelector(".item-img");
-                    itemImg.setAttribute("src",`${itemsA[itemClick]._images[imgPos]}`);
-                    
-                });
-
-                // llamamos al boton de back para volver a la imágen anterior
-                const fowardButton = document.querySelector(".foward");
-                // creamos el listener para que ese botón retorme a la imagen anteior
-                fowardButton.addEventListener("click",()=>{
-                    if (imgPos >= (itemsA[itemClick]._images.length - 1)){
-                        return null
-                    } else{
-                        imgPos = imgPos +1;
-                    }
-                    let itemImg = document.querySelector(".item-img");
-                    itemImg.setAttribute("src",`${itemsA[itemClick]._images[imgPos]}`);
-                }
-);
-
-//llamamos el boton de salir del item
-const quitItem = document.querySelector(".quit");
-//creamos un listener para salirnos al darle click al item
-quitItem.addEventListener("click",()=>{
-    itemView.classList.toggle("hide");
-})
-
-
-    })
+                    );
+    
+                    //llamamos el boton de salir del item
+                    const quitItem = document.querySelector(".quit");
+                    //creamos un listener para salirnos al darle click al item
+                    quitItem.addEventListener("click",()=>{
+                        itemView.classList.toggle("hide");
+                    })
+    
+    
+            })
+    }
 }
 
 
+// llamamos a los cat container para poder seleccionar a las categorías
+const catContainer = document.querySelectorAll(".cat-container");
+//aqui vamos a agregar el código para el listener de las categorías
+
+for (let i = 0; i < categoriesA.length; i++){
+    catContainer[i].addEventListener("click", ()=>{
+        categories.classList.add("hide");
+        let class1 = catContainer[i].getAttribute("class1");
+        console.log(class1);
+        console.log(itemsA);
+        searchedCategory = [];
+        for (let j = 0; j < itemsA.length;j++){
+            if (itemsA[j]._categoryItem == class1){
+                searchedCategory.push(itemsA[j]);
+                console.log("coincidencia encontrada");
+            }else{
+                console.log("no se encontró coincidencia");
+            }
+        }
+        console.log(searchedCategory);
+
+        itemsRecurrent = "";
+        if (searchedCategory[0] != null){
+            for (item in searchedCategory){
+                let codigo = `
+                <div class="product-container itemNo${item}">
+                    <img src=${searchedCategory[item]._images[0]} alt=${searchedCategory[item]._name}>
+                        <figcaption>
+                            <p>${searchedCategory[item]._name}</p>
+                            <p>$${searchedCategory[item]._price} COP</p>
+                        </figcaption>
+                </div>`;
+                
+                itemsRecurrent =  itemsRecurrent + codigo;
+                products.innerHTML = itemsRecurrent;
+                console.log("hasta aqui llega bien");
+                
+            }
+            productContainer = document.querySelectorAll(".product-container");
+        }else{
+            products.innerHTML = `<h2> Lo sentimos, no tenemos stock para esta categoría</h2>`;
+            console.log("tambien llega");
+        }
+        
+    });
+
+
+
+
+
+}
 
 // llamamos el menú de ingresar a categorías y le agregamos la clase hide a categorias
 //o la quitamos, para que aparezca o desaparezca
@@ -212,5 +264,8 @@ backHome.addEventListener("click", ()=>{
         
         itemsRecurrent =  itemsRecurrent + codigo;
         products.innerHTML = itemsRecurrent;
+        
     }
+    productContainer = document.querySelectorAll(".product-container");
+    listenerItemList();
 });
