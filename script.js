@@ -220,22 +220,87 @@ for (let i = 0; i < categoriesA.length; i++){
                 
                 itemsRecurrent =  itemsRecurrent + codigo;
                 products.innerHTML = itemsRecurrent;
-                console.log("hasta aqui llega bien");
-                
+
             }
+            //usamos un selector para obtener todos los elementos del array
+            console.log("si selecciona los container");
             productContainer = document.querySelectorAll(".product-container");
+            console.log(productContainer);
+            for ( let j = 0; j < productContainer.length; j++ ){
+                console.log("el for está bien");
+                productContainer[j].addEventListener("click",()=>{
+                    itemView.classList.remove("hide");
+                    itemClick = j;
+                    imgPos = 0;
+                    console.log(`${searchedCategory[itemClick]._images[imgPos]}`);
+                    itemView.innerHTML=`
+                    <img class="quit" src="/src/quit.png" alt="Salir del ítem">
+                        <img class="back" src="/src/back.png" alt="Imágen anterior">
+                        <img class="foward" src="/src/foward.png" alt="Imágen siguiente">
+                        <img class="item-img" src=${searchedCategory[itemClick]._images[imgPos]} alt=${searchedCategory[itemClick]._name}>
+                        <figcaption>
+                            <h1>${searchedCategory[itemClick]._longName}</h1>
+                            <p>${searchedCategory[itemClick]._itemDescription}</p>
+                            <div class="item-buy">
+                                <p>Precio: $${searchedCategory[itemClick]._price} COP</p>
+                                <div class="item-buy-buy">
+                                    <button>Comprar</button>
+                                    <img class="img-whatsapp" src="/src/whatsapp.png" alt="Icono de WhatsApp">
+                                </div>
+                            </div>
+                        </figcaption>`
+        
+                        // llamamos al boton de back para volver a la imágen anterior
+                        const backButton = document.querySelector(".back");
+                        // creamos el listener para que ese botón retorme a la imagen anteior
+                        backButton.addEventListener("click",()=>{
+                            if (imgPos < 1){
+                                return null
+                            }else{
+                                imgPos = imgPos -1;
+                            }
+                            
+                            let itemImg = document.querySelector(".item-img");
+                            itemImg.setAttribute("src",`${searchedCategory[itemClick]._images[imgPos]}`);
+                            
+                        });
+        
+                        // llamamos al boton de fpward para acanzar a la siguiente imagen
+                        const fowardButton = document.querySelector(".foward");
+                        // creamos el listener para que ese botón retorme a la imagen anteior
+                        fowardButton.addEventListener("click",()=>{
+                            if (imgPos >= (searchedCategory[itemClick]._images.length - 1)){
+                                return null
+                            } else{
+                                imgPos = imgPos +1;
+                            }
+                            let itemImg = document.querySelector(".item-img");
+                            itemImg.setAttribute("src",`${searchedCategory[itemClick]._images[imgPos]}`);
+                        }
+                        );
+        
+                        //llamamos el boton de salir del item
+                        const quitItem = document.querySelector(".quit");
+                        //creamos un listener para salirnos al darle click al item
+                        quitItem.addEventListener("click",()=>{
+                            itemView.classList.toggle("hide");
+                        })
+                    })
+
+
+
+            }
+
+
+
         }else{
             products.innerHTML = `<h2> Lo sentimos, no tenemos stock para esta categoría</h2>`;
             console.log("tambien llega");
         }
         
     });
-
-
-
-
-
 }
+
 
 // llamamos el menú de ingresar a categorías y le agregamos la clase hide a categorias
 //o la quitamos, para que aparezca o desaparezca
