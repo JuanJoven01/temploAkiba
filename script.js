@@ -356,5 +356,71 @@ searchInput.addEventListener("keypress",(event)=>{
 
 
 function searchByString (){
-    console.log(searchInput.value);
+    let searchLower = searchInput.value.toLowerCase();
+    let wordsWOA = removeAccents(searchLower);
+    let wordsSearch = wordsWOA.split(' ');
+    console.log(wordsSearch);
+    let arrayRaw = [];
+    let allAtributes = [];
+    let allAtributesString = new String;
+    let justWords = [];
+    let witness = false;
+
+
+    for (item in itemsA){
+        arrayRaw = [];
+        allAtributes = [];
+        allAtributesString = null;
+        witness = false;
+
+        arrayRaw.push(itemsA[item]._categoryItem);
+        arrayRaw.push(itemsA[item]._itemDescription);
+        arrayRaw.push(itemsA[item]._longName);
+        arrayRaw.push(itemsA[item]._name);
+        //console.log(arrayRaw);
+
+        for (jArrays in arrayRaw){
+            
+            allAtributes.push(arrayRaw[jArrays]);
+            //console.log(allAtributes);
+        }
+        
+        for (atributes in allAtributes){
+            allAtributesString = allAtributesString + ' ' + allAtributes[atributes];
+            //console.log(allAtributesString);
+        }
+        let justWordsWOA = removeAccents(allAtributesString);
+        let wordsLower = justWordsWOA.toLowerCase();
+        justWords = wordsLower.split(' ');
+        console.log(justWords);
+
+        for (same in wordsSearch){
+
+            for (similar in justWords){
+                if (wordsSearch[same] == justWords[similar]){
+                    witness = true;
+                    console.log("Si se encontró coincidencia")
+
+                }else{
+                    console.log("No se encontró coincidencia")       
+                }
+            }
+
+        }
+
+        console.log(witness);
+        
+    }
+
+    
+
+    
+
+
 }
+
+
+
+const removeAccents = (str) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  } ;
