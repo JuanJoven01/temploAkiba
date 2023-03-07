@@ -16,6 +16,10 @@ const backHome = document.querySelector(".back-home");
 const searchInput = document.querySelector(".search-string");
 //traemos el boton con el cual buscaremos
 const searchButton = document.querySelector(".search-button");
+//llamamos a los elementos de contacto del footer
+const contactWhatsapp = document.querySelector(".contact-whatsapp");
+const contactInstagram = document.querySelector(".contact-instagram");
+const contactFacebook = document.querySelector(".contact-facebook");
 
 //creamos una variable que se creará en los productos de la lista
 //para saber a cual le hemos dado click
@@ -227,16 +231,15 @@ for (let i = 0; i < categoriesA.length; i++){
 
             }
             //usamos un selector para obtener todos los elementos del array
-            console.log("si selecciona los container");
+            
             productContainer = document.querySelectorAll(".product-container");
-            console.log(productContainer);
+            
             for ( let j = 0; j < productContainer.length; j++ ){
                 console.log("el for está bien");
                 productContainer[j].addEventListener("click",()=>{
                     itemView.classList.remove("hide");
                     itemClick = j;
                     imgPos = 0;
-                    console.log(`${searchedCategory[itemClick]._images[imgPos]}`);
                     itemView.innerHTML=`
                     <img class="quit" src="/src/quit.png" alt="Salir del ítem">
                         <img class="back" src="/src/back.png" alt="Imágen anterior">
@@ -299,7 +302,7 @@ for (let i = 0; i < categoriesA.length; i++){
 
         }else{
             products.innerHTML = `<h2> Lo sentimos, no tenemos stock para esta categoría</h2>`;
-            console.log("tambien llega");
+            
         }
         
     });
@@ -359,12 +362,13 @@ function searchByString (){
     let searchLower = searchInput.value.toLowerCase();
     let wordsWOA = removeAccents(searchLower);
     let wordsSearch = wordsWOA.split(' ');
-    console.log(wordsSearch);
+    
     let arrayRaw = [];
     let allAtributes = [];
     let allAtributesString = new String;
     let justWords = [];
     let witness = false;
+    let arraySearch = [];
 
 
     for (item in itemsA){
@@ -392,25 +396,115 @@ function searchByString (){
         let justWordsWOA = removeAccents(allAtributesString);
         let wordsLower = justWordsWOA.toLowerCase();
         justWords = wordsLower.split(' ');
-        console.log(justWords);
+        //console.log(justWords);
 
         for (same in wordsSearch){
 
             for (similar in justWords){
                 if (wordsSearch[same] == justWords[similar]){
                     witness = true;
-                    console.log("Si se encontró coincidencia")
+                    
 
                 }else{
-                    console.log("No se encontró coincidencia")       
+                    console.log("No se encontró coincidencia");
+                    products.innerHTML = `<h2> Lo sentimos, no encontramos coincidencia para su busqueda</h2>`;       
                 }
             }
 
         }
 
-        console.log(witness);
+        //console.log(witness);
+        if (witness == true){
+            arraySearch.push(itemsA[item]);
+            //console.log(arraySearch);
+
+        }
+
+    itemsRecurrent = "";
+    for (item in arraySearch){
+        let codigo = `
+        <div class="product-container itemNo${item}">
+            <img src=${arraySearch[item]._images[0]} alt=${arraySearch[item]._name}>
+                <figcaption>
+                    <p>${arraySearch[item]._name}</p>
+                    <p>$${arraySearch[item]._price} COP</p>
+                </figcaption>
+        </div>`;
+        
+        itemsRecurrent =  itemsRecurrent + codigo;
+        products.innerHTML = itemsRecurrent;
         
     }
+    
+    productContainer = document.querySelectorAll(".product-container");
+    console.log(productContainer);
+    for ( let j = 0; j < productContainer.length; j++ ){
+        //console.log("el for está bien");
+        productContainer[j].addEventListener("click",()=>{
+            itemView.classList.remove("hide");
+            itemClick = j;
+            imgPos = 0;
+            itemView.innerHTML=`
+            <img class="quit" src="/src/quit.png" alt="Salir del ítem">
+                <img class="back" src="/src/back.png" alt="Imágen anterior">
+                <img class="foward" src="/src/foward.png" alt="Imágen siguiente">
+                <img class="item-img" src=${arraySearch[itemClick]._images[imgPos]} alt=${arraySearch[itemClick]._name}>
+                <figcaption>
+                    <h1>${arraySearch[itemClick]._longName}</h1>
+                    <p>${arraySearch[itemClick]._itemDescription}</p>
+                    <div class="item-buy">
+                        <p>Precio: $${arraySearch[itemClick]._price} COP</p>
+                        <div class="item-buy-buy">
+                            <button>Comprar</button>
+                            <img class="img-whatsapp" src="/src/whatsapp.png" alt="Icono de WhatsApp">
+                        </div>
+                    </div>
+                </figcaption>`
+
+            // llamamos al boton de back para volver a la imágen anterior
+            const backButton = document.querySelector(".back");
+            // creamos el listener para que ese botón retorme a la imagen anteior
+            backButton.addEventListener("click",()=>{
+                if (imgPos < 1){
+                    return null
+                }else{
+                    imgPos = imgPos -1;
+                }
+                
+                let itemImg = document.querySelector(".item-img");
+                itemImg.setAttribute("src",`${arraySearch[itemClick]._images[imgPos]}`);
+                
+            });
+
+            // llamamos al boton de fpward para acanzar a la siguiente imagen
+            const fowardButton = document.querySelector(".foward");
+            // creamos el listener para que ese botón retorme a la imagen anteior
+            fowardButton.addEventListener("click",()=>{
+                if (imgPos >= (arraySearch[itemClick]._images.length - 1)){
+                    return null
+                } else{
+                    imgPos = imgPos +1;
+                }
+                let itemImg = document.querySelector(".item-img");
+                itemImg.setAttribute("src",`${arraySearch[itemClick]._images[imgPos]}`);
+            }
+            );
+
+            //llamamos el boton de salir del item
+            const quitItem = document.querySelector(".quit");
+            //creamos un listener para salirnos al darle click al item
+            quitItem.addEventListener("click",()=>{
+                itemView.classList.toggle("hide");
+            })
+            })
+
+
+
+        }
+        
+    }
+
+
 
     
 
@@ -419,6 +513,18 @@ function searchByString (){
 
 }
 
+// creamos los listeners para los contactos por el footer
+contactWhatsapp.addEventListener("click",()=>{
+    //console.log("click")
+});
+
+contactInstagram.addEventListener("click",()=>{
+    //console.log("click");
+});
+
+contactFacebook.addEventListener("click",()=>{
+    //console.log("click");
+});
 
 
 const removeAccents = (str) => {
