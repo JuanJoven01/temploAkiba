@@ -186,6 +186,12 @@ function listenerItemList(){
                     quitItem.addEventListener("click",()=>{
                         itemView.classList.toggle("hide");
                     })
+
+                    const itemBuy = document.querySelector(".item-buy-buy");
+                    itemBuy.addEventListener("click",()=>{
+                        console.log("si");
+                        window.open(`https://wa.me/573024995482?text=Hola, estoy interesado en un producto de tu tienda: ${itemsA[itemClick]._longName}`,"_Blank");
+                    });
     
     
             })
@@ -292,6 +298,11 @@ for (let i = 0; i < categoriesA.length; i++){
                         quitItem.addEventListener("click",()=>{
                             itemView.classList.toggle("hide");
                         })
+
+                        const itemBuy = document.querySelector(".item-buy-buy");
+                        itemBuy.addEventListener("click",()=>{
+                        window.open(`https://wa.me/573024995482?text=Hola, estoy interesado en un producto de tu tienda: ${searchedCategory[itemClick]._longName}`,"_Blank");
+                        });
                     })
 
 
@@ -359,6 +370,7 @@ searchInput.addEventListener("keypress",(event)=>{
 
 
 function searchByString (){
+    itemView.classList.add("hide");
     let searchLower = searchInput.value.toLowerCase();
     let wordsWOA = removeAccents(searchLower);
     let wordsSearch = wordsWOA.split(' ');
@@ -496,8 +508,16 @@ function searchByString (){
             quitItem.addEventListener("click",()=>{
                 itemView.classList.toggle("hide");
             })
-            })
 
+
+            const itemBuy = document.querySelector(".item-buy-buy");
+            itemBuy.addEventListener("click",()=>{
+                console.log("si");
+                window.open(`https://wa.me/573024995482?text=Hola, estoy interesado en un producto de tu tienda: ${arraySearch[itemClick]._longName}`,"_Blank");
+            });
+            
+            })
+            
 
 
         }
@@ -516,14 +536,20 @@ function searchByString (){
 // creamos los listeners para los contactos por el footer
 contactWhatsapp.addEventListener("click",()=>{
     //console.log("click")
+    let littleSaver = contactWhatsapp.outerHTML;
+    console.log(littleSaver)
+    //location.href ='https://pablomonteserin.com';
+    window.open(`https://wa.me/573024995482?text=Hola, estoy interesado en un producto de tu tienda`,"_Blank");
 });
 
 contactInstagram.addEventListener("click",()=>{
-    //console.log("click");
+    //console.log("click"); https://www.instagram.com/templo_akiba/
+    window.open(`https://www.instagram.com/templo_akiba/`,"_Blank");
 });
 
 contactFacebook.addEventListener("click",()=>{
     //console.log("click");
+    window.open(`https://www.instagram.com/templo_akiba/`,"_Blank");
 });
 
 
